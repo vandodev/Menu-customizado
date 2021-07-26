@@ -17,13 +17,18 @@ import notifications from "./assets/bell.png";
 import settings from "./assets/settings.png";
 import logout from "./assets/logout.png";
 
+// Menu
+import menu from "./assets/menu.png";
+import close from "./assets/close.png";
+
+// Photo
+import photo from "./assets/photo.jpg";
+
 export default function App() {
   const [currentTab, setCurrentTab] = useState("Home");
   return (
     <SafeAreaView style={styles.container}>
-      <View
-        style={{ justifyContent: "flex-start", padding: 20, marginTop: 10 }}
-      >
+      <View style={{ justifyContent: "flex-start", padding: 20 }}>
         <Image
           source={profile}
           style={{ width: 60, height: 60, borderRadius: 10, marginTop: 8 }}
@@ -63,6 +68,64 @@ export default function App() {
         </View>
 
         <View>{TabButton(currentTab, setCurrentTab, "LogOut", logout)}</View>
+      </View>
+
+      {
+        // Over lay View...
+      }
+
+      <View
+        style={{
+          flexGrow: 1,
+          backgroundColor: "white",
+          position: "absolute",
+          top: 0,
+          bottom: 0,
+          left: 0,
+          right: 0,
+          paddingHorizontal: 15,
+          paddingVertical: 20,
+        }}
+      >
+        <TouchableOpacity>
+          <Image
+            source={menu}
+            style={{ width: 20, height: 20, tintColor: "black", marginTop: 40 }}
+          ></Image>
+        </TouchableOpacity>
+
+        <Text
+          style={{
+            fontSize: 30,
+            fontWeight: "bold",
+            color: "black",
+            paddingTop: 20,
+          }}
+        >
+          {currentTab}
+        </Text>
+
+        <Image
+          source={photo}
+          style={{
+            width: "100%",
+            height: 300,
+            borderRadius: 15,
+            marginTop: 25,
+          }}
+        ></Image>
+        <Text
+          style={{
+            fontSize: 20,
+            fontWeight: "bold",
+            paddingTop: 15,
+            paddingBottom: 5,
+          }}
+        >
+          Jenna Ezarik
+        </Text>
+
+        <Text style={{}}>Techie, YouTuber, PS Lover, Apple Sheep's Sister</Text>
       </View>
     </SafeAreaView>
   );
