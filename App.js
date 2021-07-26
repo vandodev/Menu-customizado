@@ -10,7 +10,12 @@ import {
 } from "react-native";
 
 import profile from "./assets/profile.png";
+
 import home from "./assets/home.png";
+import search from "./assets/search.png";
+import notifications from "./assets/bell.png";
+import settings from "./assets/settings.png";
+import logout from "./assets/logout.png";
 
 export default function App() {
   const [currentTab, setCurrentTab] = useState("Home");
@@ -46,40 +51,64 @@ export default function App() {
           </Text>
         </TouchableOpacity>
 
-        <View>
+        <View style={{ flexGrow: 1, marginTop: 50 }}>
           {
             //Tab bar Buttons...
           }
-          {TabButton()}
+
+          {TabButton(currentTab, setCurrentTab, "Home", home)}
+          {TabButton(currentTab, setCurrentTab, "Search", search)}
+          {TabButton(currentTab, setCurrentTab, "Notifications", notifications)}
+          {TabButton(currentTab, setCurrentTab, "Settings", settings)}
         </View>
+
+        <View>{TabButton(currentTab, setCurrentTab, "LogOut", logout)}</View>
       </View>
     </SafeAreaView>
   );
 }
 
-const TabButton = () => {
+const TabButton = (currentTab, setCurrentTab, title, image) => {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity
+      onPress={() => {
+        if (title == "LogOut") {
+          // Do your Stuff...
+        } else {
+          setCurrentTab(title);
+        }
+      }}
+    >
       <View
         style={{
           flexDirection: "row",
           alignItems: "center",
           paddingVertical: 8,
-          backgroundColor: "white",
+          backgroundColor: currentTab == title ? "white" : "transparent",
           paddingLeft: 20,
-          paddingRight: 40,
+          paddingRight: 30,
           borderBottomEndRadius: 8,
+          marginTop: 15,
         }}
       >
-        <Image source={home} style={{ width: 25, height: 25 }}></Image>
+        <Image
+          source={image}
+          style={{
+            width: 25,
+            height: 25,
+            tintColor: currentTab == title ? "#5359D1" : "white",
+          }}
+        ></Image>
+
         <Text
           style={{
             fontSize: 15,
             fontWeight: "bold",
             paddingLeft: 15,
+            color: currentTab == title ? "#5359D1" : "white",
           }}
         >
-          Home
+          {title}
         </Text>
       </View>
     </TouchableOpacity>
