@@ -8,7 +8,9 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
+
 import profile from "./assets/profile.png";
+import home from "./assets/home.png";
 
 export default function App() {
   return (
@@ -39,6 +41,37 @@ export default function App() {
           Ver perfil
         </Text>
       </TouchableOpacity>
+
+      <View>
+        {
+          //Tab bar Buttons...
+        }
+
+        <TouchableOpacity>
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              paddingVertical: 8,
+              backgroundColor: "white",
+              paddingLeft: 20,
+              paddingRight: 40,
+              borderBottomEndRadius: 8,
+            }}
+          >
+            <Image source={home} style={{ width: 25, height: 25 }}></Image>
+            <Text
+              style={{
+                fontSize: 15,
+                fontWeight: "bold",
+                paddingLeft: 15,
+              }}
+            >
+              Home
+            </Text>
+          </View>
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
   );
 }
