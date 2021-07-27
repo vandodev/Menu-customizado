@@ -96,7 +96,9 @@ export default function App() {
           right: 0,
           paddingHorizontal: 15,
           paddingVertical: 20,
+          borderRadius: showMenu ? 15 : 0,
           // Transforming View...
+          // transform: [{ scale: scaleValue }],
           transform: [{ scale: scaleValue }, { translateX: offsetValue }],
         }}
       >
@@ -105,11 +107,20 @@ export default function App() {
             // Do Actions Here....
             // Scaling the view...
             Animated.timing(scaleValue, {
-              toValue: showMenu ? 1 : 0.88,
+              //toValue: 0.88,
+              toValue: showMenu ? 1 : 0.88, //Restaura a view
               duration: 300,
               useNativeDriver: true,
             }).start();
-            // setShowMenu(!showMenu);
+
+            Animated.timing(offsetValue, {
+              // YOur Random Value...
+              toValue: showMenu ? 0 : 230,
+              duration: 300,
+              useNativeDriver: true,
+            }).start();
+
+            setShowMenu(!showMenu);
           }}
         >
           <Image
