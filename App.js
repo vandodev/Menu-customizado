@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   SafeAreaView,
   StyleSheet,
@@ -7,6 +7,7 @@ import {
   View,
   Image,
   TouchableOpacity,
+  Animated,
 } from "react-native";
 
 import profile from "./assets/profile.png";
@@ -26,6 +27,16 @@ import photo from "./assets/photo.jpg";
 
 export default function App() {
   const [currentTab, setCurrentTab] = useState("Home");
+  // To get the curretn Status of menu ...
+  const [showMenu, setShowMenu] = useState(false);
+
+  // Animated Properties...
+
+  const offsetValue = useRef(new Animated.Value(0)).current;
+  // Scale Intially must be One...
+  const scaleValue = useRef(new Animated.Value(1)).current;
+  const closeButtonOffset = useRef(new Animated.Value(0)).current;
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={{ justifyContent: "flex-start", padding: 20 }}>
@@ -74,7 +85,7 @@ export default function App() {
         // Over lay View...
       }
 
-      <View
+      <Animated.View
         style={{
           flexGrow: 1,
           backgroundColor: "white",
@@ -85,9 +96,22 @@ export default function App() {
           right: 0,
           paddingHorizontal: 15,
           paddingVertical: 20,
+          // Transforming View...
+          transform: [{ scale: scaleValue }, { translateX: offsetValue }],
         }}
       >
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            // Do Actions Here....
+            // Scaling the view...
+            Animated.timing(scaleValue, {
+              toValue: showMenu ? 1 : 0.88,
+              duration: 300,
+              useNativeDriver: true,
+            }).start();
+            // setShowMenu(!showMenu);
+          }}
+        >
           <Image
             source={menu}
             style={{ width: 20, height: 20, tintColor: "black", marginTop: 40 }}
@@ -126,7 +150,7 @@ export default function App() {
         </Text>
 
         <Text style={{}}>Techie, YouTuber, PS Lover, Apple Sheep's Sister</Text>
-      </View>
+      </Animated.View>
     </SafeAreaView>
   );
 }
