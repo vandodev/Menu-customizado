@@ -39,7 +39,9 @@ export default function App() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={{ justifyContent: "flex-start", padding: 20 }}>
+      <View
+        style={{ justifyContent: "flex-start", padding: 20, marginTop: 20 }}
+      >
         <Image
           source={profile}
           style={{ width: 60, height: 60, borderRadius: 10, marginTop: 8 }}
@@ -178,7 +180,7 @@ export default function App() {
               paddingBottom: 5,
             }}
           >
-            Jenna Ezarik
+            Elaine husenberg
           </Text>
 
           <Text style={{}}>
